@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدرس ب: الدورة لا تتوقف | نموذج تفاعلي — Learn.io</title>
+    <meta name="description" content="نموذج تفاعلي من منصة Learn.io: درس دورة الماء للمرحلة الابتدائية العليا — تعلم بالتجربة والتوقع، لا بالمشاهدة.">
+    <link rel="stylesheet" href="tw.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Cairo', 'Tajawal', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #e0f2fe 100%);
+            color: #0f172a;
+            user-select: none;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(203, 213, 225, 0.8);
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+        .glass-button {
+            background: #f0f9ff;
+            border: 1px solid #bae6fd;
+            color: #0369a1;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-button:hover:not(:disabled) {
+            background: #e0f2fe;
+            border-color: #38bdf8;
+            color: #0284c7;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.15);
+        }
+        .glass-button:active:not(:disabled) { transform: translateY(0); }
+        .glass-button:disabled { opacity: 0.4; cursor: not-allowed; filter: grayscale(1); }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 8px; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .card-step {
+            display: none;
+            opacity: 0;
+            transform: translateY(10px) scale(0.99);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .card-step.active {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        .physion-choice.selected {
+            background: #0ea5e9 !important;
+            color: #fff !important;
+            border-color: #0284c7 !important;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between p-2 sm:p-4 select-none">
+
+    <!-- Top Navigation & Progress Header -->
+    <header class="w-full max-w-6xl mx-auto glass-card rounded-2xl p-3 sm:p-4 mb-2 flex items-center justify-between shadow-sm z-20 shrink-0">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-tr from-sky-500 to-blue-600 flex items-center justify-center text-white text-xl sm:text-2xl shadow-md shadow-sky-500/20">
+                &#x1F504;
+            </div>
+            <div>
+                <h1 class="font-extrabold text-base sm:text-lg md:text-xl text-slate-900 leading-tight">الدرس ب: الدورة لا تتوقف</h1>
+                <p class="text-xs text-slate-500 font-medium hidden sm:block">المرحلة الابتدائية العليا (9-11 سنة) • دورة الماء والمحافظة عليها • نموذج تجريبي</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-3 md:gap-6">
+            <div class="flex flex-col items-end min-w-[120px] sm:min-w-[180px]">
+                <div class="flex justify-between w-full text-xs font-bold mb-1">
+                    <span class="text-sky-700" id="step-label">المحطة 1 من 3</span>
+                    <span class="text-slate-600" id="progress-percentage">33%</span>
+                </div>
+                <div class="w-full bg-slate-200 rounded-full h-2.5 overflow-hidden border border-slate-300">
+                    <div id="progress-bar" class="bg-gradient-to-r from-sky-500 to-emerald-500 h-2.5 rounded-full transition-all duration-500 ease-out" style="width: 33%"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Viewport Card Deck Container -->
+    <main class="w-full max-w-6xl mx-auto flex-1 relative flex flex-col justify-center my-auto">
+
+        <!-- CARD 0: Warmup Check -->
+        <section id="card-0" class="card-step active w-full glass-card rounded-3xl p-4 sm:p-6 md:p-8 flex-col justify-between overflow-y-auto">
+            <div class="flex flex-col gap-4">
+                <div class="flex flex-wrap items-center gap-3">
+                    <span class="px-3 py-1 bg-amber-100 text-amber-800 text-xs font-bold rounded-full border border-amber-300">تنشيط الذاكرة (الدرس أ)</span>
+                    <h2 class="text-lg sm:text-xl md:text-2xl font-extrabold text-slate-900">اختبار ذاتي سريع: من أين جاءت القطرات؟</h2>
+                </div>
+
+                <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
+                    قبل أن نبدأ رحلتنا في "الدورة لا تتوقف"، دعنا نتأكد من فهمنا للجسر السابق! تخيل أنك وضعت كوباً به ماء بارد ومكعبات ثلج على الطاولة...
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-2 items-center">
+                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 flex flex-col items-center justify-center relative min-h-[200px]">
+                        <div class="relative w-32 h-44 border-4 border-slate-300 rounded-b-3xl bg-sky-500/10 backdrop-blur-sm flex items-end justify-center overflow-hidden shadow-inner">
+                            <div class="w-full h-2/3 bg-sky-400/30 border-t-2 border-sky-400/50 flex items-center justify-center">
+                                <span class="text-2xl animate-bounce">🧊 🧊</span>
+                            </div>
+                            <div id="cup-drops" class="absolute inset-0 opacity-100 transition-opacity duration-700 pointer-events-none">
+                                <div class="absolute top-8 left-2 w-2.5 h-3.5 bg-sky-500 rounded-full animate-pulse"></div>
+                                <div class="absolute top-16 left-4 w-3 h-4 bg-sky-500 rounded-full"></div>
+                                <div class="absolute top-12 right-3 w-2.5 h-3 bg-sky-500 rounded-full"></div>
+                                <div class="absolute top-24 right-5 w-3.5 h-4 bg-sky-500 rounded-full"></div>
+                                <div class="absolute bottom-10 left-5 w-2.5 h-3.5 bg-sky-500 rounded-full"></div>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-600 mt-3 font-bold">قطرات ماء تكاثفت على السطح الخارجي للكوب</p>
+                    </div>
+
+                    <div class="flex flex-col gap-3">
+                        <label class="text-sm font-bold text-slate-800">سؤال: ظهرت قطرات ماء على جدار الكوب البارد من الخارج. من أين جاءت هذه القطرات؟</label>
+
+                        <button onclick="checkWarmupAnswer(false, this)" class="warmup-opt w-full text-right p-4 rounded-xl border border-slate-200 bg-white hover:bg-slate-100 text-sm font-semibold text-slate-800 transition flex items-center gap-3 shadow-sm">
+                            <span class="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center text-slate-600 font-bold text-xs shrink-0">أ</span>
+                            <span>تسربت قطرات الماء من داخل الكوب عبر المسام الزجاجية.</span>
+                        </button>
+
+                        <button onclick="checkWarmupAnswer(true, this)" class="warmup-opt w-full text-right p-4 rounded-xl border border-slate-200 bg-white hover:bg-slate-100 text-sm font-semibold text-slate-800 transition flex items-center gap-3 shadow-sm">
+                            <span class="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center text-slate-600 font-bold text-xs shrink-0">ب</span>
+                            <span>من بخار الماء غير المرئي (الحبيبات الخفية) الموجود في هواء الغرفة والذي تكاثف عند لمس الكوب البارد.</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="warmup-feedback" class="hidden p-4 rounded-xl text-sm font-bold transition-all duration-300"></div>
+            </div>
+        </section>
+
+        <!-- CARD 1: Physion Matrix Prediction -->
+        <section id="card-1" class="card-step w-full glass-card rounded-3xl p-4 sm:p-6 md:p-8 flex-col justify-between overflow-y-auto">
+            <div class="flex flex-col gap-3">
+                <div class="flex flex-wrap items-center gap-3">
+                    <span class="px-3 py-1 bg-sky-100 text-sky-800 text-xs font-bold rounded-full border border-sky-300">التمرين ب1 • الجزء 1</span>
+                    <h2 class="text-lg sm:text-xl font-extrabold text-slate-900">متى تمطر الغيمة؟ (توقع قبل التجربة)</h2>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-700">
+                    لدينا كوب شفاف به ماء صافٍ (أصفر)، وتطوف فوقه غيمة من رغوة الحلاقة. نضيف قطرات ماء ملوّن (أحمر) قطرة بقطرة فوق الرغوة.
+                    <br><span class="text-amber-700 font-bold">التحدي: هل ينزل اللون إلى الماء الأصفر قبل القطرة رقم 10؟</span>
+                </p>
+
+                <div class="overflow-x-auto rounded-xl border border-slate-200 my-1 bg-white shadow-sm">
+                    <table class="w-full text-xs sm:text-sm text-right">
+                        <thead class="bg-slate-100 text-sky-900">
+                            <tr>
+                                <th class="p-3">#</th>
+                                <th class="p-3">حالة الغيمة وقطرات الصبغة</th>
+                                <th class="p-3">توقعك: هل ينزل اللون قبل القطرة 10؟</th>
+                                <th class="p-3">النتيجة</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 text-slate-800">
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-3 font-bold text-sky-700">1</td>
+                                <td class="p-3">غيمة رقيقة جداً (طبقة رغوة خفيفة)</td>
+                                <td class="p-3"><div class="flex gap-2">
+                                    <button onclick="setPhysionChoice(1, true, this)" class="physion-choice px-3 py-1.5 rounded-lg border border-slate-300 bg-slate-50 text-xs font-bold transition">نعم</button>
+                                    <button onclick="setPhysionChoice(1, false, this)" class="physion-choice px-3 py-1.5 rounded-lg border border-slate-300 bg-slate-50 text-xs font-bold transition">لا</button>
+                                </div></td>
+                                <td class="p-3 font-bold" id="physion-res-1">-</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-3 font-bold text-sky-700">2</td>
+                                <td class="p-3">غيمة سميكة جداً ومرتفعة</td>
+                                <td class="p-3"><div class="flex gap-2">
+                                    <button onclick="setPhysionChoice(2, true, this)" class="physion-choice px-3 py-1.5 rounded-lg border border-slate-300 bg-slate-50 text-xs font-bold transition">نعم</button>
+                                    <button onclick="setPhysionChoice(2, false, this)" class="physion-choice px-3 py-1.5 rounded-lg border border-slate-300 bg-slate-50 text-xs font-bold transition">لا</button>
+                                </div></td>
+                                <td class="p-3 font-bold" id="physion-res-2">-</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-3 font-bold text-sky-700">3</td>
+                                <td class="p-3">غيمة متوسطة + قطرات صغيرة جداً (قطارة رقيقة)</td>
+                                <td class="p-3"><div class="flex gap-2">
+                                    <button onclick="setPhysionChoice(3, true, this)" class="physion-choice px-3 py-1.5 rounded-lg border border-slate-300 bg-slate-50 text-xs font-bold transition">نعم</button>
+                                    <button onclick="setPhysionChoice(3, false, this)" class="physion-choice px-3 py-1.5 rounded-lg border border-slate-300 bg-slate-50 text-xs font-bold transition">لا</button>
+                                </div></td>
+                                <td class="p-3 font-bold" id="physion-res-3">-</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-3 font-bold text-sky-700">4</td>
+                                <td class="p-3">غيمة متوسطة + قطرات كبيرة جداً (ملعقة)</td>
+                                <td class="p-3"><div class="flex gap-2">
+                                    <button onclick="setPhysionChoice(4, true, this)" class="physion-choice px-3 py-1.5 rounded-lg border border-slate-300 bg-slate-50 text-xs font-bold transition">نعم</button>
+                                    <button onclick="setPhysionChoice(4, false, this)" class="physion-choice px-3 py-1.5 rounded-lg border border-slate-300 bg-slate-50 text-xs font-bold transition">لا</button>
+                                </div></td>
+                                <td class="p-3 font-bold" id="physion-res-4">-</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-3 font-bold text-sky-700">5</td>
+                                <td class="p-3">إضافة القطرات على طرف الغيمة بدلاً من وسطها</td>
+                                <td class="p-3"><div class="flex gap-2">
+                                    <button onclick="setPhysionChoice(5, true, this)" class="physion-choice px-3 py-1.5 rounded-lg border border-slate-300 bg-slate-50 text-xs font-bold transition">نعم</button>
+                                    <button onclick="setPhysionChoice(5, false, this)" class="physion-choice px-3 py-1.5 rounded-lg border border-slate-300 bg-slate-50 text-xs font-bold transition">لا</button>
+                                </div></td>
+                                <td class="p-3 font-bold" id="physion-res-5">-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-between gap-2 mt-2">
+                    <span id="physion-completion-tag" class="text-xs font-bold text-amber-800">اختر توقعك للحالات الخمس للتحقق...</span>
+                    <button onclick="evaluatePhysionMatrix()" id="eval-physion-btn" disabled class="glass-button px-5 py-2 rounded-xl text-xs font-bold">
+                        كشف النتائج &#x1F50D;
+                    </button>
+                </div>
+                <div id="physion-feedback" class="hidden p-4 rounded-xl text-sm font-bold bg-sky-50 border border-sky-200 text-sky-900"></div>
+            </div>
+        </section>
+
+        <!-- CARD 2: Interactive Foam & Rain Cloud Simulation -->
+        <section id="card-2" class="card-step w-full glass-card rounded-3xl p-4 sm:p-6 md:p-8 flex-col justify-between overflow-y-auto">
+            <div class="flex flex-col gap-3">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span class="px-3 py-1 bg-emerald-100 text-emerald-800 text-xs font-bold rounded-full border border-emerald-300">التمرين ب1 • الجزء 2</span>
+                        <h2 class="text-base sm:text-lg md:text-xl font-extrabold text-slate-900">الكشف والتجربة: محاكاة هطول الغيمة</h2>
+                    </div>
+                    <div class="text-xs bg-slate-100 px-3 py-1.5 rounded-lg text-slate-800 border border-slate-300 font-bold">
+                        عدد القطرات المضافة: <span id="foam-drop-counter" class="font-extrabold text-amber-600 text-sm">0</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-1 items-center">
+                    <div class="md:col-span-2 bg-slate-100 rounded-2xl p-2 border border-slate-300 relative flex flex-col items-center justify-center shadow-inner">
+                        <canvas id="foamSimCanvas" width="450" height="230" class="w-full max-w-full rounded-xl bg-white border border-slate-200"></canvas>
+                        <div class="flex flex-wrap items-center justify-center gap-2 mt-3 w-full">
+                            <button onclick="addCloudDrop('small')" class="glass-button px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5">
+                                💧 قطرة صغيرة
+                            </button>
+                            <button onclick="addCloudDrop('large')" class="glass-button px-3 py-2 rounded-xl text-xs font-bold text-amber-800 flex items-center gap-1.5">
+                                🌧️ قطرة كبيرة (ملعقة)
+                            </button>
+                            <button onclick="resetFoamSim()" class="glass-button px-3 py-2 rounded-xl text-xs font-bold text-rose-700">
+                                ↩️ إعادة
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-2xl p-4 border border-slate-200 text-xs sm:text-sm flex flex-col gap-2 leading-relaxed">
+                        <h3 class="font-bold text-sky-900 text-sm flex items-center gap-2">
+                            💡 الشرح المستهدف:
+                        </h3>
+                        <p class="text-slate-700">
+                            قد تتوقع أن الغيمة كيس أو إسفنجة تنفتح فجأة لتسكب كل الماء دفعة واحدة. لكن الحقيقة أن الغيمة <strong>تتشبع تدريجياً</strong>: تتجمع القطرات الصغيرة داخلها وتكبر، وعندما تصبح أثقل من أن تحملها الغيمة — تشق طريقها إلى الأسفل. هذا هو الهطول!
+                        </p>
+                        <p class="text-slate-700">
+                            جرّب بنفسك: أضف قطرات صغيرة وراقب الغيمة تمتصها... ثم لاحظ متى يبدأ "المطر" الأحمر بالنزول إلى الماء. هل القطرات الكبيرة تسرّع الهطول؟
+                        </p>
+                        <div id="sim-status" class="mt-1 p-3 rounded-lg bg-white border border-slate-200 text-slate-700 font-bold">الغيمة ما زالت تمتص القطرات... 🌤️</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="w-full max-w-6xl mx-auto glass-card rounded-2xl p-3 mt-2 flex items-center justify-between shrink-0">
+        <button id="prev-btn" onclick="goToCard(currentCard - 1)" disabled class="glass-button px-5 py-2.5 rounded-xl text-sm font-bold">
+            → السابق
+        </button>
+        <a href="../" class="text-xs font-bold text-slate-500 hover:text-sky-700 transition">نموذج تجريبي من منصة Learn.io — العودة إلى الملف التعريفي</a>
+        <button id="next-btn" onclick="goToCard(currentCard + 1)" disabled class="glass-button px-5 py-2.5 rounded-xl text-sm font-bold">
+            التالي ←
+        </button>
+    </nav>
+
+<script>
+var currentCard = 0;
+var TOTAL_CARDS = 3;
+var cardUnlocked = [false, false, true];
+
+function updateNav() {
+    document.getElementById('prev-btn').disabled = currentCard === 0;
+    var nextBtn = document.getElementById('next-btn');
+    nextBtn.disabled = currentCard >= TOTAL_CARDS - 1 || !cardUnlocked[currentCard];
+    document.getElementById('step-label').textContent = 'المحطة ' + (currentCard + 1) + ' من ' + TOTAL_CARDS;
+    var pct = Math.round(((currentCard + 1) / TOTAL_CARDS) * 100);
+    document.getElementById('progress-percentage').textContent = pct + '%';
+    document.getElementById('progress-bar').style.width = pct + '%';
+}
+
+function goToCard(i) {
+    if (i < 0 || i >= TOTAL_CARDS) return;
+    document.getElementById('card-' + currentCard).classList.remove('active');
+    currentCard = i;
+    document.getElementById('card-' + currentCard).classList.add('active');
+    updateNav();
+    if (currentCard === 2) initFoamSim();
+}
+
+/* ---- Card 0: warmup ---- */
+function checkWarmupAnswer(correct, el) {
+    var fb = document.getElementById('warmup-feedback');
+    fb.classList.remove('hidden', 'bg-emerald-50', 'border', 'border-emerald-300', 'text-emerald-900', 'bg-rose-50', 'border-rose-300', 'text-rose-900');
+    document.querySelectorAll('.warmup-opt').forEach(function (b) { b.classList.remove('ring-2', 'ring-emerald-400', 'ring-rose-400'); });
+    if (correct) {
+        el.classList.add('ring-2', 'ring-emerald-400');
+        fb.classList.add('bg-emerald-50', 'border', 'border-emerald-300', 'text-emerald-900');
+        fb.innerHTML = '✅ أحسنت! الهواء من حولنا مليء ببخار ماء لا نراه. عندما يلامس سطحاً بارداً يتكاثف ويعود سائلاً — وهذا بالضبط ما سنراه في الغيوم اليوم. اضغط "التالي" لنكمل!';
+        cardUnlocked[0] = true;
+    } else {
+        el.classList.add('ring-2', 'ring-rose-400');
+        fb.classList.add('bg-rose-50', 'border', 'border-rose-300', 'text-rose-900');
+        fb.innerHTML = '🤔 ليس تماماً — الزجاج ليس فيه مسام يتسرب منها الماء! فكر: أين يوجد ماء لا نراه حول الكوب؟ جرّب الإجابة الأخرى.';
+    }
+    updateNav();
+}
+
+/* ---- Card 1: prediction matrix ---- */
+var physionChoices = {};
+var physionAnswers = { 1: true, 2: false, 3: false, 4: true, 5: true };
+var physionExplains = {
+    1: 'الغيمة الرقيقة تتشبع بسرعة — ينزل اللون مبكراً.',
+    2: 'الغيمة السميكة تمتص قطرات كثيرة قبل أن تشبع.',
+    3: 'القطرات الصغيرة تُشبع الغيمة ببطء شديد.',
+    4: 'القطرات الكبيرة تُشبع الغيمة بسرعة كبيرة.',
+    5: 'طرف الغيمة أرقّ من وسطها، فيتسرب اللون من الجانب بسرعة.'
+};
+
+function setPhysionChoice(row, val, btn) {
+    physionChoices[row] = val;
+    var cell = btn.parentElement;
+    cell.querySelectorAll('.physion-choice').forEach(function (b) { b.classList.remove('selected'); });
+    btn.classList.add('selected');
+    var n = Object.keys(physionChoices).length;
+    var tag = document.getElementById('physion-completion-tag');
+    if (n >= 5) {
+        tag.textContent = 'جاهز! اضغط "كشف النتائج" لمقارنة توقعاتك.';
+        tag.classList.remove('text-amber-800');
+        tag.classList.add('text-emerald-700');
+        document.getElementById('eval-physion-btn').disabled = false;
+    } else {
+        tag.textContent = 'اخترت ' + n + ' من 5 حالات...';
+    }
+}
+
+function evaluatePhysionMatrix() {
+    var score = 0;
+    for (var r = 1; r <= 5; r++) {
+        var ok = physionChoices[r] === physionAnswers[r];
+        if (ok) score++;
+        var cell = document.getElementById('physion-res-' + r);
+        cell.innerHTML = (ok ? '<span class="text-emerald-600">✔ توقع صحيح</span>' : '<span class="text-rose-600">✘ ' + (physionAnswers[r] ? 'نعم' : 'لا') + '</span>')
+            + '<br><span class="font-medium text-slate-500 text-xs">' + physionExplains[r] + '</span>';
+    }
+    var fb = document.getElementById('physion-feedback');
+    fb.classList.remove('hidden');
+    fb.innerHTML = 'نتيجتك: <span class="text-amber-600">' + score + ' من 5</span> — '
+        + (score >= 4 ? 'ممتاز! حدسك العلمي قوي. ' : score >= 2 ? 'جيد! بعض التوقعات فاجأتك — وهذا هو التعلم الحقيقي. ' : 'لا بأس أبداً — التوقع الخاطئ قبل التجربة يجعل الدماغ يتذكر النتيجة الصحيحة أكثر! ')
+        + 'الفكرة الواحدة الكبيرة: الغيمة لا "تنفتح"، بل <strong>تتشبع</strong>. انتقل للمحطة التالية لتجربها بنفسك.';
+    cardUnlocked[1] = true;
+    updateNav();
+}
+
+/* ---- Card 2: foam cloud simulation ---- */
+var sim = null;
+
+function initFoamSim() {
+    if (sim) return;
+    var canvas = document.getElementById('foamSimCanvas');
+    sim = {
+        canvas: canvas,
+        ctx: canvas.getContext('2d'),
+        drops: 0,
+        saturation: 0,
+        threshold: 10,
+        raining: false,
+        redInWater: 0,
+        falling: [],
+        rain: [],
+        puffs: []
+    };
+    for (var i = 0; i < 14; i++) {
+        sim.puffs.push({
+            x: 60 + Math.random() * 330,
+            y: 52 + Math.random() * 26,
+            r: 16 + Math.random() * 14
+        });
+    }
+    requestAnimationFrame(simLoop);
+}
+
+function addCloudDrop(size) {
+    if (!sim) initFoamSim();
+    sim.drops++;
+    document.getElementById('foam-drop-counter').textContent = sim.drops;
+    sim.falling.push({
+        x: 130 + Math.random() * 190,
+        y: -10,
+        r: size === 'large' ? 9 : 5,
+        weight: size === 'large' ? 3 : 1
+    });
+}
+
+function resetFoamSim() {
+    if (!sim) return;
+    sim.drops = 0;
+    sim.saturation = 0;
+    sim.raining = false;
+    sim.redInWater = 0;
+    sim.falling = [];
+    sim.rain = [];
+    document.getElementById('foam-drop-counter').textContent = '0';
+    setSimStatus('الغيمة ما زالت تمتص القطرات... 🌤️');
+}
+
+function setSimStatus(msg) {
+    document.getElementById('sim-status').textContent = msg;
+}
+
+function simLoop() {
+    var s = sim, ctx = s.ctx, W = s.canvas.width, H = s.canvas.height;
+    ctx.clearRect(0, 0, W, H);
+
+    /* sky */
+    ctx.fillStyle = '#f0f9ff';
+    ctx.fillRect(0, 0, W, H);
+
+    /* water (yellow -> red as dye arrives) */
+    var waterTop = H - 75;
+    var mix = Math.min(1, s.redInWater / 60);
+    var rC = Math.round(250 - 30 * mix), gC = Math.round(220 - 140 * mix), bC = Math.round(120 - 80 * mix);
+    ctx.fillStyle = 'rgb(' + rC + ',' + gC + ',' + bC + ')';
+    ctx.fillRect(20, waterTop, W - 40, 65);
+    ctx.strokeStyle = '#94a3b8';
+    ctx.lineWidth = 3;
+    ctx.strokeRect(20, waterTop, W - 40, 65);
+
+    /* falling dye drops (above cloud) */
+    for (var i = s.falling.length - 1; i >= 0; i--) {
+        var d = s.falling[i];
+        d.y += 3.2;
+        ctx.fillStyle = '#dc2626';
+        ctx.beginPath();
+        ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+        ctx.fill();
+        if (d.y >= 55) {
+            s.saturation += d.weight;
+            s.falling.splice(i, 1);
+            if (s.saturation >= s.threshold && !s.raining) {
+                s.raining = true;
+                setSimStatus('الغيمة تشبّعت! بدأ الهطول 🌧️');
+            } else if (!s.raining) {
+                setSimStatus('التشبع: ' + Math.min(s.saturation, s.threshold) + ' من ' + s.threshold + ' — الغيمة تمتص... 🌥️');
+            }
+        }
+    }
+
+    /* cloud puffs — whiten to red tint as saturation grows */
+    var sat = Math.min(1, s.saturation / s.threshold);
+    for (var p = 0; p < s.puffs.length; p++) {
+        var pf = s.puffs[p];
+        var rr = 255, gg = Math.round(255 - 90 * sat), bb = Math.round(255 - 90 * sat);
+        ctx.fillStyle = 'rgba(' + rr + ',' + gg + ',' + bb + ',0.95)';
+        ctx.beginPath();
+        ctx.arc(pf.x, pf.y, pf.r, 0, Math.PI * 2);
+        ctx.fill();
+    }
+    ctx.strokeStyle = '#cbd5e1';
+    ctx.lineWidth = 1;
+
+    /* rain streaks once saturated */
+    if (s.raining) {
+        if (Math.random() < 0.35) {
+            s.rain.push({ x: 80 + Math.random() * 290, y: 85 });
+        }
+        for (var j = s.rain.length - 1; j >= 0; j--) {
+            var rd = s.rain[j];
+            rd.y += 4.5;
+            ctx.strokeStyle = '#dc2626';
+            ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            ctx.moveTo(rd.x, rd.y);
+            ctx.lineTo(rd.x, rd.y + 9);
+            ctx.stroke();
+            if (rd.y >= waterTop) {
+                s.redInWater++;
+                s.rain.splice(j, 1);
+                if (s.redInWater === 20) setSimStatus('انظر! اللون وصل إلى الماء — اكتملت دورة الهطول 🎉');
+            }
+        }
+    }
+
+    requestAnimationFrame(simLoop);
+}
+
+updateNav();
+</script>
+
+</body>
+</html>

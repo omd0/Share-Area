@@ -230,6 +230,19 @@
     margin: 0;
     max-width: none;
   }
+  .try-btn {
+    display: inline-block;
+    margin-top: 22px;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 14px 28px;
+    border-radius: 12px;
+    transition: opacity .15s ease, transform .15s ease;
+  }
+  .try-btn:hover { opacity: .9; transform: translateY(-2px); }
 
   /* Contact */
   .contact-row {
@@ -518,6 +531,7 @@
       <img src="assets/example-lesson.png" alt="Screenshot of an interactive Arabic lesson prototype: a self-check question about condensation on a cold glass, with two answer choices, a progress bar, and an illustration of a glass of iced water" loading="lazy">
     </div>
     <p class="shot-caption">Lesson B — "The cycle never stops" (دورة الماء): warm-up self-check with immediate feedback, progress tracking, and deliberate, working-memory-friendly pacing.</p>
+    <a class="try-btn" href="example/">Try the interactive lesson — جرّب الدرس التفاعلي ←</a>
   </div>
 </section>
 
