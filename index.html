@@ -48,6 +48,19 @@
     padding: 88px 0 64px;
     border-bottom: 1px solid var(--line);
   }
+  .hero-flex {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    justify-content: space-between;
+  }
+  .hero-art {
+    flex: none;
+    width: 230px;
+    color: var(--ink-soft);
+  }
+  .hero-art .accent { color: var(--accent); }
+  @media (max-width: 760px) { .hero-art { display: none; } }
   .status-chip {
     display: inline-block;
     font-family: var(--mono);
@@ -154,6 +167,28 @@
     margin-bottom: 10px;
   }
   .layer p { margin: 0; font-size: 15.5px; }
+  .layer .licon {
+    width: 34px;
+    height: 34px;
+    color: var(--accent);
+    margin-bottom: 14px;
+    display: block;
+  }
+  .loop-diagram {
+    display: block;
+    width: 100%;
+    max-width: 620px;
+    height: auto;
+    margin: 30px auto 6px;
+    font-family: inherit;
+  }
+  .loop-diagram .box { fill: var(--surface); stroke: var(--line); }
+  .loop-diagram .arrow { stroke: var(--accent); fill: none; }
+  .loop-diagram .head { fill: var(--accent); }
+  .loop-diagram .kick { fill: var(--accent); font-family: var(--mono); font-size: 11px; letter-spacing: .12em; font-weight: 700; }
+  .loop-diagram .lbl { fill: var(--ink); font-size: 16px; font-weight: 700; }
+  .loop-diagram .sub { fill: var(--ink-soft); font-size: 13px; }
+  .loop-diagram .flow { fill: var(--ink-faint); font-family: var(--mono); font-size: 11.5px; }
   .loop-note {
     background: var(--accent-soft);
     border-radius: 14px;
@@ -195,6 +230,13 @@
   .card h3 { margin: 0 0 8px; font-size: 17px; }
   .card p { margin: 0; font-size: 15px; }
   .card.span { grid-column: 1 / -1; }
+  .card .cicon {
+    width: 30px;
+    height: 30px;
+    color: var(--accent);
+    margin-bottom: 12px;
+    display: block;
+  }
 
   /* Roadmap */
   .phase { display: flex; gap: 20px; padding: 18px 0; border-bottom: 1px dashed var(--line); }
@@ -317,11 +359,62 @@
 <body>
 
 <header>
-  <div class="wrap">
-    <span class="status-chip">Concept stage · v0.1 draft · August 2026</span>
-    <h1>Learn<span class="tld">.io</span></h1>
-    <p class="tagline">Learn by building. Real science, real hands, real understanding.</p>
-    <p class="meta">Project portfolio — living document</p>
+  <div class="wrap hero-flex">
+    <div>
+      <span class="status-chip">Concept stage · v0.1 draft · August 2026</span>
+      <h1>Learn<span class="tld">.io</span></h1>
+      <p class="tagline">Learn by building. Real science, real hands, real understanding.</p>
+      <p class="meta">Project portfolio — living document</p>
+    </div>
+    <svg class="hero-art" viewBox="0 0 220 240" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Line drawing of a friendly robot standing on a breadboard, with a spark and a gear floating beside it">
+      <!-- antenna -->
+      <line x1="110" y1="38" x2="110" y2="58" class="accent" stroke="currentColor"/>
+      <circle cx="110" cy="30" r="7" class="accent" stroke="currentColor"/>
+      <!-- head -->
+      <rect x="70" y="58" width="80" height="58" rx="14"/>
+      <circle cx="94" cy="84" r="6" fill="currentColor" stroke="none" class="accent"/>
+      <circle cx="126" cy="84" r="6" fill="currentColor" stroke="none" class="accent"/>
+      <path d="M96 101 q14 10 28 0"/>
+      <!-- body -->
+      <rect x="62" y="126" width="96" height="62" rx="12"/>
+      <circle cx="80" cy="144" r="2.5" fill="currentColor" stroke="none"/>
+      <circle cx="96" cy="144" r="2.5" fill="currentColor" stroke="none"/>
+      <circle cx="112" cy="144" r="2.5" fill="currentColor" stroke="none"/>
+      <circle cx="128" cy="144" r="2.5" fill="currentColor" stroke="none"/>
+      <circle cx="144" cy="144" r="2.5" fill="currentColor" stroke="none"/>
+      <circle cx="80" cy="158" r="2.5" fill="currentColor" stroke="none"/>
+      <circle cx="96" cy="158" r="2.5" fill="currentColor" stroke="none"/>
+      <circle cx="112" cy="158" r="2.5" fill="currentColor" stroke="none"/>
+      <circle cx="128" cy="158" r="2.5" fill="currentColor" stroke="none"/>
+      <circle cx="144" cy="158" r="2.5" fill="currentColor" stroke="none"/>
+      <circle cx="80" cy="172" r="2.5" fill="currentColor" stroke="none"/>
+      <circle cx="96" cy="172" r="2.5" fill="currentColor" stroke="none"/>
+      <circle cx="112" cy="172" r="2.5" fill="currentColor" stroke="none"/>
+      <circle cx="128" cy="172" r="2.5" fill="currentColor" stroke="none"/>
+      <circle cx="144" cy="172" r="2.5" fill="currentColor" stroke="none"/>
+      <!-- arms -->
+      <path d="M62 140 q-22 4 -24 26"/>
+      <path d="M158 140 q22 4 24 26"/>
+      <circle cx="37" cy="172" r="6"/>
+      <circle cx="184" cy="172" r="6"/>
+      <!-- legs / breadboard base -->
+      <line x1="88" y1="188" x2="88" y2="204"/>
+      <line x1="132" y1="188" x2="132" y2="204"/>
+      <rect x="52" y="204" width="116" height="20" rx="6"/>
+      <!-- spark -->
+      <path d="M196 84 l-10 16 h10 l-10 16" class="accent" stroke="currentColor"/>
+      <!-- gear -->
+      <circle cx="28" cy="92" r="13"/>
+      <circle cx="28" cy="92" r="4.5"/>
+      <line x1="28" y1="73" x2="28" y2="79"/>
+      <line x1="28" y1="105" x2="28" y2="111"/>
+      <line x1="9" y1="92" x2="15" y2="92"/>
+      <line x1="41" y1="92" x2="47" y2="92"/>
+      <line x1="15" y1="79" x2="19" y2="83"/>
+      <line x1="37" y1="101" x2="41" y2="105"/>
+      <line x1="41" y1="79" x2="37" y2="83"/>
+      <line x1="19" y1="101" x2="15" y2="105"/>
+    </svg>
   </div>
 </header>
 
@@ -354,16 +447,34 @@
     <h2>One platform, two connected layers</h2>
     <div class="layers">
       <div class="layer">
+        <svg class="licon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><circle cx="8" cy="10" r="1.6"/><circle cx="16" cy="10" r="1.6"/><path d="M9.6 10h4.8"/><path d="M8 8.4V6.5M16 11.6v1.9"/></svg>
         <span class="tag">DIGITAL · Brilliant-style</span>
         <h3>Solve, don't watch</h3>
         <p>Short, interactive lessons where the learner solves problems — not watches videos. Electronics and robotics taught through manipulation, prediction, and immediate feedback: simulate the circuit, predict the output, fix the bug, then see why.</p>
       </div>
       <div class="layer">
+        <svg class="licon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="1.5"/><rect x="10" y="10" width="4" height="4" rx="0.5"/><path d="M9.5 7V4.5M14.5 7V4.5M9.5 19.5V17M14.5 19.5V17M7 9.5H4.5M7 14.5H4.5M19.5 9.5H17M19.5 14.5H17"/></svg>
         <span class="tag">PHYSICAL · CrunchLabs-style</span>
         <h3>Build, don't assemble</h3>
         <p>Project kits shipped to the learner, synchronized with the digital track. Every kit builds on the concepts just mastered on screen. Finish the digital module on motor drivers, then wire and program a real one.</p>
       </div>
     </div>
+    <svg class="loop-diagram" viewBox="0 0 620 190" role="img" aria-label="Diagram of the learning loop: concepts flow from the digital screen to the physical kit, and mastery flows back from the kit to the screen">
+      <rect class="box" x="14" y="46" width="240" height="98" rx="16" stroke-width="1.5"/>
+      <text class="kick" x="134" y="80" text-anchor="middle">DIGITAL</text>
+      <text class="lbl" x="134" y="105" text-anchor="middle">Learn why</text>
+      <text class="sub" x="134" y="126" text-anchor="middle">interactive problems on screen</text>
+      <rect class="box" x="366" y="46" width="240" height="98" rx="16" stroke-width="1.5"/>
+      <text class="kick" x="486" y="80" text-anchor="middle">PHYSICAL</text>
+      <text class="lbl" x="486" y="105" text-anchor="middle">Prove it</text>
+      <text class="sub" x="486" y="126" text-anchor="middle">real builds in real hands</text>
+      <path class="arrow" d="M262 72 Q310 42 358 72" stroke-width="2.5"/>
+      <path class="head" d="M358 72 l-11 -3 4 10 z"/>
+      <text class="flow" x="310" y="38" text-anchor="middle">concepts</text>
+      <path class="arrow" d="M358 120 Q310 150 262 120" stroke-width="2.5"/>
+      <path class="head" d="M262 120 l11 3 -4 -10 z"/>
+      <text class="flow" x="310" y="166" text-anchor="middle">mastery</text>
+    </svg>
     <p class="loop-note">The screen teaches <em>why</em>; the kit proves it in the learner's hands. Neither layer alone is new — the tight loop between them is the product.</p>
 
     <h3>What makes it different</h3>
@@ -382,14 +493,17 @@
     <h2>The learners</h2>
     <div class="cards">
       <div class="card">
+        <svg class="cicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5 12 5l10 4.5L12 14 2 9.5z"/><path d="M6.5 11.5V16c0 1.2 2.5 2.7 5.5 2.7s5.5-1.5 5.5-2.7v-4.5"/><line x1="22" y1="9.5" x2="22" y2="15"/></svg>
         <h3>Teens (15–18) · primary</h3>
         <p>High-school students who want real engineering skills beyond a curriculum that rarely offers hands-on work. Motivated by university preparation, competitions, and genuine curiosity. Purchase decision often involves parents.</p>
       </div>
       <div class="card">
+        <svg class="cicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4.5 4.5 0 0 0-6 5.6L3 17.6V21h3.4l5.7-5.7a4.5 4.5 0 0 0 5.6-6l-3.2 3.2-2.8-2.8 3-3z"/></svg>
         <h3>University students &amp; adults · primary</h3>
         <p>Engineering students whose degrees are theory-heavy; self-learners and career-switchers moving toward embedded systems, robotics, and hardware; hobbyists who want structure instead of scattered YouTube tutorials.</p>
       </div>
       <div class="card span">
+        <svg class="cicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V8l6-4.5L15 8v13"/><path d="M15 21V11h6v10"/><line x1="1.5" y1="21" x2="22.5" y2="21"/><rect x="7" y="10" width="4" height="3.5" rx="0.5"/><path d="M18 14h.01M18 17h.01"/></svg>
         <h3>Later</h3>
         <p>Younger learners (with adapted tracks), schools and STEM clubs (institutional licensing), and makerspaces.</p>
       </div>
