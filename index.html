@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learn.io — Project Portfolio</title>
+<meta name="description" content="Learn.io: learn by building. Real science, real hands, real understanding. Interactive digital lessons paired with physical robotics kits — Arabic-first, for MENA.">
+<style>
+  :root {
+    --bg: #fafaf7;
+    --surface: #ffffff;
+    --ink: #1c2330;
+    --ink-soft: #4b5568;
+    --ink-faint: #8a93a5;
+    --accent: #0d7a6a;
+    --accent-soft: #e2f2ef;
+    --line: #e5e4de;
+    --check: #0d7a6a;
+    --cross: #b3b9c4;
+    --mono: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12151c;
+      --surface: #1a1e27;
+      --ink: #e8eaf0;
+      --ink-soft: #aab2c2;
+      --ink-faint: #6b7484;
+      --accent: #3fbfa8;
+      --accent-soft: #16332e;
+      --line: #2a2f3b;
+      --check: #3fbfa8;
+      --cross: #4b5261;
+    }
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+
+  /* Header / hero */
+  header {
+    padding: 88px 0 64px;
+    border-bottom: 1px solid var(--line);
+  }
+  .status-chip {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: .04em;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border-radius: 999px;
+    padding: 5px 14px;
+    margin-bottom: 28px;
+  }
+  h1 {
+    font-size: clamp(40px, 7vw, 64px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    font-weight: 750;
+  }
+  h1 .tld { color: var(--accent); }
+  .tagline {
+    margin-top: 18px;
+    font-size: clamp(19px, 2.6vw, 23px);
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+  .meta {
+    margin-top: 28px;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--ink-faint);
+  }
+
+  /* Sections */
+  section { padding: 56px 0; border-bottom: 1px solid var(--line); }
+  section:last-of-type { border-bottom: none; }
+  .kicker {
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  h2 {
+    font-size: clamp(26px, 4vw, 34px);
+    letter-spacing: -0.015em;
+    font-weight: 700;
+    margin-bottom: 22px;
+  }
+  h3 { font-size: 20px; font-weight: 650; margin: 32px 0 12px; }
+  p { color: var(--ink-soft); margin-bottom: 16px; max-width: 68ch; }
+  p strong, li strong { color: var(--ink); }
+  em { color: var(--ink); }
+
+  ul.flat { list-style: none; }
+  ul.flat li {
+    color: var(--ink-soft);
+    padding: 14px 0 14px 30px;
+    position: relative;
+    border-bottom: 1px dashed var(--line);
+  }
+  ul.flat li:last-child { border-bottom: none; }
+  ul.flat li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  ol.nums { list-style: none; counter-reset: n; }
+  ol.nums li {
+    counter-increment: n;
+    color: var(--ink-soft);
+    padding: 14px 0 14px 44px;
+    position: relative;
+    border-bottom: 1px dashed var(--line);
+  }
+  ol.nums li:last-child { border-bottom: none; }
+  ol.nums li::before {
+    content: counter(n, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 16px;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  /* Two-layer cards */
+  .layers { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 26px 0; }
+  @media (max-width: 640px) { .layers { grid-template-columns: 1fr; } }
+  .layer {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 26px;
+  }
+  .layer h3 { margin: 0 0 10px; font-size: 18px; }
+  .layer .tag {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 10px;
+  }
+  .layer p { margin: 0; font-size: 15.5px; }
+  .loop-note {
+    background: var(--accent-soft);
+    border-radius: 14px;
+    padding: 20px 26px;
+    color: var(--ink);
+    font-weight: 550;
+    max-width: none;
+  }
+
+  /* Tables */
+  .table-scroll { overflow-x: auto; margin: 26px 0; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 15px; }
+  th, td { text-align: left; padding: 14px 18px; border-bottom: 1px solid var(--line); color: var(--ink-soft); vertical-align: top; }
+  thead th {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    background: transparent;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  td.stage, td.who { color: var(--ink); font-weight: 600; white-space: nowrap; }
+  .yes { color: var(--check); font-weight: 700; }
+  .no { color: var(--cross); }
+  .partial { color: var(--ink-faint); font-style: italic; }
+  tr.hero-row td { color: var(--ink); font-weight: 650; background: var(--accent-soft); }
+  tr.hero-row td .yes { color: var(--accent); }
+
+  /* Audience cards */
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 8px; }
+  @media (max-width: 640px) { .cards { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 24px;
+  }
+  .card h3 { margin: 0 0 8px; font-size: 17px; }
+  .card p { margin: 0; font-size: 15px; }
+  .card.span { grid-column: 1 / -1; }
+
+  /* Roadmap */
+  .phase { display: flex; gap: 20px; padding: 18px 0; border-bottom: 1px dashed var(--line); }
+  .phase:last-child { border-bottom: none; }
+  .phase .ph {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    min-width: 72px;
+    padding-top: 3px;
+  }
+  .phase div p { margin: 0; font-size: 15.5px; }
+  .phase div h3 { margin: 0 0 6px; font-size: 17px; }
+
+  /* Footer / QR */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 72px 0 80px;
+    text-align: center;
+  }
+  .qr-box {
+    display: inline-block;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 26px 26px 20px;
+  }
+  .qr-box svg {
+    width: 190px;
+    height: 190px;
+    display: block;
+    color: var(--ink);
+    stroke-width: 1;
+  }
+  .qr-title { font-weight: 700; font-size: 18px; margin-bottom: 18px; }
+  .qr-link {
+    display: block;
+    margin-top: 14px;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+  .qr-link:hover { text-decoration: underline; }
+  .fineprint { margin-top: 34px; font-size: 13px; color: var(--ink-faint); max-width: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <span class="status-chip">Concept stage · v0.1 draft · August 2026</span>
+    <h1>Learn<span class="tld">.io</span></h1>
+    <p class="tagline">Learn by building. Real science, real hands, real understanding.</p>
+    <p class="meta">Project portfolio — living document</p>
+  </div>
+</header>
+
+<section id="idea">
+  <div class="wrap">
+    <p class="kicker">01 · The Idea</p>
+    <h2>One paragraph</h2>
+    <p>Learn.io is a learning platform where people master science and engineering by <em>doing</em> — solving interactive challenges on screen the way Brilliant.org does, then building real physical projects with their hands the way CrunchLabs does. It merges both worlds into one guided journey, designed on top of cognitive science (how humans actually learn and retain) and serious UI/UX craft (how to make hard things feel engaging, not gamified fluff).</p>
+    <p>The first track: <strong>robotics and electronics</strong>, delivered through shipped project kits paired with the digital platform. Starting market: <strong>MENA, Arabic-first</strong>.</p>
+  </div>
+</section>
+
+<section id="problem">
+  <div class="wrap">
+    <p class="kicker">02 · The Problem</p>
+    <h2>Where science education fails</h2>
+    <ul class="flat">
+      <li><strong>Passive learning dominates.</strong> Video courses and lectures create the illusion of understanding. Learners watch, nod, and forget — retention from passive consumption is a fraction of what active practice produces.</li>
+      <li><strong>Theory is divorced from the physical world.</strong> Even the best interactive platforms stop at the screen. A learner can solve circuit puzzles for months and still freeze the first time they hold a real breadboard.</li>
+      <li><strong>Hands-on products skip the science.</strong> Many subscription kits teach "follow the steps" assembly rather than the underlying principles. The learner builds the thing but couldn't design the next one.</li>
+      <li><strong>Trend-chasing replaces fundamentals.</strong> "Learn AI in 30 days," "code without math" — the market rewards hype over depth, leaving shallow skills built on missing foundations.</li>
+      <li><strong>MENA is underserved.</strong> Quality interactive STEM content in Arabic is nearly nonexistent, and hands-on engineering kits with Arabic instruction and regional shipping are rarer still — while the region's young population and appetite for tech careers keep growing.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="solution">
+  <div class="wrap">
+    <p class="kicker">03 · The Solution</p>
+    <h2>One platform, two connected layers</h2>
+    <div class="layers">
+      <div class="layer">
+        <span class="tag">DIGITAL · Brilliant-style</span>
+        <h3>Solve, don't watch</h3>
+        <p>Short, interactive lessons where the learner solves problems — not watches videos. Electronics and robotics taught through manipulation, prediction, and immediate feedback: simulate the circuit, predict the output, fix the bug, then see why.</p>
+      </div>
+      <div class="layer">
+        <span class="tag">PHYSICAL · CrunchLabs-style</span>
+        <h3>Build, don't assemble</h3>
+        <p>Project kits shipped to the learner, synchronized with the digital track. Every kit builds on the concepts just mastered on screen. Finish the digital module on motor drivers, then wire and program a real one.</p>
+      </div>
+    </div>
+    <p class="loop-note">The screen teaches <em>why</em>; the kit proves it in the learner's hands. Neither layer alone is new — the tight loop between them is the product.</p>
+
+    <h3>What makes it different</h3>
+    <ol class="nums">
+      <li><strong>Cognitive science as an engineering discipline, not a slogan.</strong> The curriculum is built on established learning research: active recall, spaced repetition, desirable difficulty, immediate feedback, and interleaving. Lesson design decisions trace back to evidence, not intuition.</li>
+      <li><strong>UI/UX as a teaching instrument.</strong> Interface design lowers cognitive load where the learner shouldn't struggle, and raises productive struggle where they should. Closer to a well-crafted game than a textbook — without cheapening the content.</li>
+      <li><strong>Real science, no trend-surfing.</strong> Fundamentals first. A learner who finishes the robotics track can design circuits and systems, not just replicate tutorials.</li>
+      <li><strong>Arabic-first for a region that's been an afterthought.</strong> Native Arabic content designed from scratch — not translated — with the option to expand bilingually.</li>
+    </ol>
+  </div>
+</section>
+
+<section id="audience">
+  <div class="wrap">
+    <p class="kicker">04 · Who It's For</p>
+    <h2>The learners</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Teens (15–18) · primary</h3>
+        <p>High-school students who want real engineering skills beyond a curriculum that rarely offers hands-on work. Motivated by university preparation, competitions, and genuine curiosity. Purchase decision often involves parents.</p>
+      </div>
+      <div class="card">
+        <h3>University students &amp; adults · primary</h3>
+        <p>Engineering students whose degrees are theory-heavy; self-learners and career-switchers moving toward embedded systems, robotics, and hardware; hobbyists who want structure instead of scattered YouTube tutorials.</p>
+      </div>
+      <div class="card span">
+        <h3>Later</h3>
+        <p>Younger learners (with adapted tracks), schools and STEM clubs (institutional licensing), and makerspaces.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="track">
+  <div class="wrap">
+    <p class="kicker">05 · First Track</p>
+    <h2>Robotics &amp; Electronics</h2>
+    <p>Robotics is the ideal starting point because it is inherently physical, visibly rewarding, and layered — it naturally teaches electronics, programming, mechanics, and systems thinking in one arc.</p>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Stage</th><th>Digital layer</th><th>Physical kit</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="stage">Foundations</td><td>Electricity, circuits, components — interactive simulations</td><td>First circuits kit: breadboard, sensors, real measurements</td></tr>
+          <tr><td class="stage">Control</td><td>Microcontrollers, logic, programming fundamentals</td><td>MCU kit: inputs, outputs, first programs on real hardware</td></tr>
+          <tr><td class="stage">Systems</td><td>Motors, drivers, power, signal</td><td>Actuator kit: motion, control loops</td></tr>
+          <tr><td class="stage">Integration</td><td>Robot architecture, debugging, design thinking</td><td>Capstone robot: designed and built, not just assembled</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Each digital module ends with a mastery check; each kit ends with an open-ended challenge that requires understanding, not instruction-following. <em>(Illustrative arc — to be developed with curriculum design.)</em></p>
+  </div>
+</section>
+
+<section id="market">
+  <div class="wrap">
+    <p class="kicker">06 · Market Snapshot</p>
+    <h2>Demand on both sides, no one combining them</h2>
+    <ul class="flat">
+      <li>Global EdTech is a multi-hundred-billion-dollar market; STEM kits and hands-on learning are among its fastest-growing segments.</li>
+      <li>Brilliant.org and CrunchLabs each prove one half of the model at scale — evidence of demand on both sides, with no dominant player combining them.</li>
+      <li>MENA: 400M+ people, a majority under 30, national strategies (Saudi Vision 2030, UAE, Egypt ICT strategy) pouring investment into STEM education and local tech talent — with a severe shortage of quality Arabic technical content.</li>
+    </ul>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th></th><th>Interactive digital</th><th>Physical kits</th><th>Real fundamentals</th><th>Arabic-first</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="who">Brilliant.org</td><td class="yes">✔</td><td class="no">✘</td><td class="yes">✔</td><td class="no">✘</td></tr>
+          <tr><td class="who">CrunchLabs</td><td class="no">✘</td><td class="yes">✔</td><td class="partial">partial</td><td class="no">✘</td></tr>
+          <tr><td class="who">Generic STEM kits</td><td class="no">✘</td><td class="yes">✔</td><td class="no">✘</td><td class="partial">rare</td></tr>
+          <tr><td class="who">YouTube / MOOCs</td><td class="no">✘</td><td class="no">✘</td><td class="partial">varies</td><td class="partial">limited</td></tr>
+          <tr class="hero-row"><td class="who">Learn.io</td><td class="yes">✔</td><td class="yes">✔</td><td class="yes">✔</td><td class="yes">✔</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><em>Figures to be validated with dedicated research — directional only.</em></p>
+  </div>
+</section>
+
+<section id="business">
+  <div class="wrap">
+    <p class="kicker">07 · Business Model</p>
+    <h2>Open — options under evaluation</h2>
+    <ol class="nums">
+      <li><strong>Subscription + kits (hybrid).</strong> Monthly/annual platform subscription; kits sold per track or bundled into higher tiers. Recurring revenue plus hardware margin. Closest to the CrunchLabs + Brilliant hybrid nature of the product.</li>
+      <li><strong>Track-based pricing.</strong> One price per complete track (digital + kits included). Simple to communicate, easier for MENA buyers wary of subscriptions.</li>
+      <li><strong>Freemium funnel.</strong> Free digital foundations; paid kits and advanced tracks. Lowers the entry barrier in a price-sensitive market.</li>
+    </ol>
+    <p>Key questions to resolve: kit logistics and shipping costs across MENA, local payment preferences (subscription resistance, cash-on-delivery culture), and unit economics of hardware at low initial volume.</p>
+  </div>
+</section>
+
+<section id="principles">
+  <div class="wrap">
+    <p class="kicker">08 · Design &amp; Learning Principles</p>
+    <h2>Commitments, not features</h2>
+    <ul class="flat">
+      <li><strong>Nothing is learned passively.</strong> Every concept is introduced through a problem the learner acts on.</li>
+      <li><strong>The interface serves cognition.</strong> Every screen is designed around what the learner's working memory can hold at that moment.</li>
+      <li><strong>Struggle is placed deliberately.</strong> Easy where confusion adds nothing; hard where the struggle <em>is</em> the learning.</li>
+      <li><strong>The physical build is the exam.</strong> True mastery is demonstrated in the real world, not in a quiz.</li>
+      <li><strong>Depth over trend.</strong> Content earns its place by building lasting capability.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="roadmap">
+  <div class="wrap">
+    <p class="kicker">09 · Roadmap</p>
+    <h2>Draft phases</h2>
+    <div class="phase">
+      <span class="ph">P0</span>
+      <div>
+        <h3>Foundation (now)</h3>
+        <p>Define curriculum architecture for the robotics track. Validate demand (landing page, community, interviews with target learners in MENA). Resolve business model and kit logistics questions.</p>
+      </div>
+    </div>
+    <div class="phase">
+      <span class="ph">P1</span>
+      <div>
+        <h3>Digital MVP</h3>
+        <p>Build the first interactive digital modules (electronics foundations). Test with a pilot cohort; measure completion and retention against cognitive-science benchmarks.</p>
+      </div>
+    </div>
+    <div class="phase">
+      <span class="ph">P2</span>
+      <div>
+        <h3>First kit</h3>
+        <p>Design and produce the foundations kit. Run the full digital + physical loop with pilot users. Iterate.</p>
+      </div>
+    </div>
+    <div class="phase">
+      <span class="ph">P3</span>
+      <div>
+        <h3>Launch</h3>
+        <p>Full first track live in Arabic. Paid launch in initial market(s). Begin second track planning.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="risks">
+  <div class="wrap">
+    <p class="kicker">10 · Risks &amp; Open Questions</p>
+    <h2>Known unknowns</h2>
+    <ul class="flat">
+      <li><strong>Hardware logistics in MENA</strong> — shipping, customs, and cost across fragmented markets. Possible mitigations: country-by-country launch, local fulfillment partners, BYO-components fallback path.</li>
+      <li><strong>Capital intensity of kits</strong> — hardware requires upfront cash. Digital-first launch de-risks this.</li>
+      <li><strong>Name and domain</strong> — "Learn.io" availability and trademark need verification; naming may need revisiting.</li>
+      <li><strong>Curriculum expertise</strong> — the cognitive-science claim must be backed by rigorous instructional design, potentially with an advisor.</li>
+      <li><strong>Pricing sensitivity</strong> — MENA purchasing power varies widely; regional pricing likely required.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="qr-title">Scan to share this portfolio</p>
+    <div class="qr-box" aria-label="QR code linking to this page">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 33" role="img" aria-hidden="false" aria-label="QR code for https://omd0.github.io/Share-Area/"><path stroke="currentColor" d="M2 2.5h7m3 0h2m2 0h1m2 0h4m1 0h7m-29 1h1m5 0h1m1 0h2m1 0h3m4 0h3m1 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m3 0h2m3 0h1m3 0h1m2 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m2 0h2m2 0h1m3 0h2m3 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h4m1 0h1m2 0h1m2 0h1m2 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m3 0h2m2 0h2m3 0h2m1 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-18 1h1m3 0h1m1 0h3m-20 1h1m1 0h1m1 0h1m1 0h1m2 0h1m1 0h2m3 0h2m1 0h2m3 0h1m2 0h1m-28 1h2m1 0h1m1 0h1m2 0h1m1 0h1m1 0h2m1 0h1m4 0h4m1 0h1m2 0h1m-29 1h1m1 0h2m1 0h3m2 0h3m1 0h1m3 0h1m1 0h2m2 0h1m1 0h3m-26 1h1m4 0h1m1 0h1m2 0h2m1 0h2m2 0h4m3 0h1m-24 1h1m1 0h3m2 0h1m2 0h4m1 0h5m1 0h1m1 0h2m-29 1h1m1 0h1m4 0h3m4 0h1m2 0h1m3 0h3m1 0h1m2 0h1m-29 1h2m1 0h1m1 0h2m4 0h1m1 0h1m4 0h1m1 0h3m1 0h2m1 0h2m-28 1h1m3 0h1m1 0h3m2 0h1m2 0h1m1 0h2m3 0h1m2 0h1m1 0h1m-25 1h1m2 0h1m1 0h2m1 0h2m3 0h2m2 0h3m2 0h1m1 0h2m-27 1h2m3 0h1m5 0h1m2 0h3m1 0h3m2 0h2m1 0h1m-29 1h1m4 0h5m1 0h2m1 0h1m2 0h2m4 0h2m2 0h2m-28 1h2m2 0h1m1 0h1m3 0h1m1 0h5m1 0h2m3 0h2m1 0h1m-28 1h1m2 0h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h2m2 0h5m-17 1h5m1 0h1m1 0h2m2 0h1m3 0h1m1 0h3m-29 1h7m2 0h1m2 0h2m2 0h1m2 0h2m1 0h1m1 0h2m1 0h2m-29 1h1m5 0h1m3 0h1m1 0h1m4 0h2m1 0h1m3 0h2m1 0h2m-29 1h1m1 0h3m1 0h1m1 0h1m1 0h1m6 0h2m1 0h5m3 0h1m-29 1h1m1 0h3m1 0h1m2 0h1m1 0h2m3 0h1m2 0h1m3 0h2m1 0h3m-29 1h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h2m6 0h1m1 0h3m2 0h1m-29 1h1m5 0h1m2 0h1m2 0h4m1 0h4m3 0h1m2 0h1m-28 1h7m1 0h1m3 0h1m1 0h1m1 0h1m2 0h2m1 0h2m3 0h2"/></svg>
+    </div>
+    <a class="qr-link" href="https://omd0.github.io/Share-Area/">omd0.github.io/Share-Area</a>
+    <p class="fineprint">Learn.io — Project Portfolio · Concept stage, v0.1 draft · This is a living document; open sections (business model, market figures, roadmap dates) will be updated as decisions are made.</p>
+  </div>
+</footer>
+
+</body>
+</html>
