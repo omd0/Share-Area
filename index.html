@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learn.io — Project Portfolio</title>
+<meta name="description" content="Learn.io: learn by building. Real science, real hands, real understanding. Interactive digital lessons paired with physical robotics kits — Arabic-first, for MENA.">
+<style>
+  :root {
+    --bg: #fafaf7;
+    --surface: #ffffff;
+    --ink: #1c2330;
+    --ink-soft: #4b5568;
+    --ink-faint: #8a93a5;
+    --accent: #0d7a6a;
+    --accent-soft: #e2f2ef;
+    --line: #e5e4de;
+    --check: #0d7a6a;
+    --cross: #b3b9c4;
+    --mono: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12151c;
+      --surface: #1a1e27;
+      --ink: #e8eaf0;
+      --ink-soft: #aab2c2;
+      --ink-faint: #6b7484;
+      --accent: #3fbfa8;
+      --accent-soft: #16332e;
+      --line: #2a2f3b;
+      --check: #3fbfa8;
+      --cross: #4b5261;
+    }
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+
+  /* Header / hero */
+  header {
+    padding: 88px 0 64px;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero-flex {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    justify-content: space-between;
+  }
+  .hero-art {
+    flex: none;
+    width: 230px;
+    color: var(--ink-soft);
+  }
+  .hero-art .accent { color: var(--accent); }
+  @media (max-width: 760px) { .hero-art { display: none; } }
+  .status-chip {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: .04em;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border-radius: 999px;
+    padding: 5px 14px;
+    margin-bottom: 28px;
+  }
+  h1 {
+    font-size: clamp(40px, 7vw, 64px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    font-weight: 750;
+  }
+  h1 .tld { color: var(--accent); }
+  .tagline {
+    margin-top: 18px;
+    font-size: clamp(19px, 2.6vw, 23px);
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+  .meta {
+    margin-top: 28px;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--ink-faint);
+  }
+
+  /* Sections */
+  section { padding: 56px 0; border-bottom: 1px solid var(--line); }
+  section:last-of-type { border-bottom: none; }
+  .kicker {
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  h2 {
+    font-size: clamp(26px, 4vw, 34px);
+    letter-spacing: -0.015em;
+    font-weight: 700;
+    margin-bottom: 22px;
+  }
+  h3 { font-size: 20px; font-weight: 650; margin: 32px 0 12px; }
+  p { color: var(--ink-soft); margin-bottom: 16px; max-width: 68ch; }
+  p strong, li strong { color: var(--ink); }
+  em { color: var(--ink); }
+
+  ul.flat { list-style: none; }
+  ul.flat li {
+    color: var(--ink-soft);
+    padding: 14px 0 14px 30px;
+    position: relative;
+    border-bottom: 1px dashed var(--line);
+  }
+  ul.flat li:last-child { border-bottom: none; }
+  ul.flat li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  ol.nums { list-style: none; counter-reset: n; }
+  ol.nums li {
+    counter-increment: n;
+    color: var(--ink-soft);
+    padding: 14px 0 14px 44px;
+    position: relative;
+    border-bottom: 1px dashed var(--line);
+  }
+  ol.nums li:last-child { border-bottom: none; }
+  ol.nums li::before {
+    content: counter(n, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 16px;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  /* Two-layer cards */
+  .layers { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 26px 0; }
+  @media (max-width: 640px) { .layers { grid-template-columns: 1fr; } }
+  .layer {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 26px;
+  }
+  .layer h3 { margin: 0 0 10px; font-size: 18px; }
+  .layer .tag {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 10px;
+  }
+  .layer p { margin: 0; font-size: 15.5px; }
+  .layer .licon {
+    width: 34px;
+    height: 34px;
+    color: var(--accent);
+    margin-bottom: 14px;
+    display: block;
+  }
+  .loop-diagram {
+    display: block;
+    width: 100%;
+    max-width: 620px;
+    height: auto;
+    margin: 30px auto 6px;
+    font-family: inherit;
+  }
+  .loop-diagram .box { fill: var(--surface); stroke: var(--line); }
+  .loop-diagram .arrow { stroke: var(--accent); fill: none; }
+  .loop-diagram .head { fill: var(--accent); }
+  .loop-diagram .kick { fill: var(--accent); font-family: var(--mono); font-size: 11px; letter-spacing: .12em; font-weight: 700; }
+  .loop-diagram .lbl { fill: var(--ink); font-size: 16px; font-weight: 700; }
+  .loop-diagram .sub { fill: var(--ink-soft); font-size: 13px; }
+  .loop-diagram .flow { fill: var(--ink-faint); font-family: var(--mono); font-size: 11.5px; }
+  .loop-note {
+    background: var(--accent-soft);
+    border-radius: 14px;
+    padding: 20px 26px;
+    color: var(--ink);
+    font-weight: 550;
+    max-width: none;
+  }
+
+  /* Tables */
+  .table-scroll { overflow-x: auto; margin: 26px 0; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 15px; }
+  th, td { text-align: left; padding: 14px 18px; border-bottom: 1px solid var(--line); color: var(--ink-soft); vertical-align: top; }
+  thead th {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    background: transparent;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  td.stage, td.who { color: var(--ink); font-weight: 600; white-space: nowrap; }
+  .yes { color: var(--check); font-weight: 700; }
+  .no { color: var(--cross); }
+  .partial { color: var(--ink-faint); font-style: italic; }
+  tr.hero-row td { color: var(--ink); font-weight: 650; background: var(--accent-soft); }
+  tr.hero-row td .yes { color: var(--accent); }
+
+  /* Audience cards */
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 8px; }
+  @media (max-width: 640px) { .cards { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 24px;
+  }
+  .card h3 { margin: 0 0 8px; font-size: 17px; }
+  .card p { margin: 0; font-size: 15px; }
+  .card.span { grid-column: 1 / -1; }
+  .card .cicon {
+    width: 30px;
+    height: 30px;
+    color: var(--accent);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  /* Roadmap */
+  .phase { display: flex; gap: 20px; padding: 18px 0; border-bottom: 1px dashed var(--line); }
+  .phase:last-child { border-bottom: none; }
+  .phase .ph {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    min-width: 72px;
+    padding-top: 3px;
+  }
+  .phase div p { margin: 0; font-size: 15.5px; }
+  .phase div h3 { margin: 0 0 6px; font-size: 17px; }
+
+  /* Example screenshot */
+  .shot {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 10px;
+    margin: 26px 0 14px;
+  }
+  .shot img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  .shot-caption {
+    font-size: 14px;
+    color: var(--ink-faint);
+    margin: 0;
+    max-width: none;
+  }
+  .try-btn {
+    display: inline-block;
+    margin-top: 22px;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 14px 28px;
+    border-radius: 12px;
+    transition: opacity .15s ease, transform .15s ease;
+  }
+  .try-btn:hover { opacity: .9; transform: translateY(-2px); }
+
+  /* Contact */
+  .contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 8px;
+  }
+  .contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 14px 20px;
+    text-decoration: none;
+    color: var(--ink);
+    font-weight: 600;
+    font-size: 15px;
+    transition: border-color .15s ease;
+  }
+  .contact-btn:hover { border-color: var(--accent); }
+  .contact-btn .ico {
+    width: 20px;
+    height: 20px;
+    color: var(--accent);
+    flex: none;
+  }
+  .contact-btn span.val {
+    font-family: var(--mono);
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    font-weight: 500;
+    direction: ltr;
+  }
+
+  /* Footer / QR */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 72px 0 80px;
+    text-align: center;
+  }
+  .qr-box {
+    display: inline-block;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 26px 26px 20px;
+  }
+  .qr-box svg {
+    width: 190px;
+    height: 190px;
+    display: block;
+    color: var(--ink);
+    stroke-width: 1;
+  }
+  .qr-title { font-weight: 700; font-size: 18px; margin-bottom: 18px; }
+  .qr-link {
+    display: block;
+    margin-top: 14px;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+  .qr-link:hover { text-decoration: underline; }
+  .fineprint { margin-top: 34px; font-size: 13px; color: var(--ink-faint); max-width: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hero-flex">
+    <div>
+      <span class="status-chip">Concept stage · v0.1 draft · August 2026</span>
+      <h1>Learn<span class="tld">.io</span></h1>
+      <p class="tagline">Learn by building. Real science, real hands, real understanding.</p>
+      <p class="meta">Project portfolio — living document</p>
+    </div>
+    <svg class="hero-art" viewBox="0 0 220 240" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Line drawing of a friendly robot standing on a breadboard, with a spark and a gear floating beside it">
+      <!-- antenna -->
+      <line x1="110" y1="38" x2="110" y2="58" class="accent" stroke="currentColor"/>
+      <circle cx="110" cy="30" r="7" class="accent" stroke="currentColor"/>
+      <!-- head -->
+      <rect x="70" y="58" width="80" height="58" rx="14"/>
+      <circle cx="94" cy="84" r="6" fill="currentColor" stroke="none" class="accent"/>
+      <circle cx="126" cy="84" r="6" fill="currentColor" stroke="none" class="accent"/>
+      <path d="M96 101 q14 10 28 0"/>
+      <!-- body -->
+      <rect x="62" y="126" width="96" height="62" rx="12"/>
+      <circle cx="80" cy="144" r="2.5" fill="currentColor" stroke="none"/>
+      <circle cx="96" cy="144" r="2.5" fill="currentColor" stroke="none"/>
+      <circle cx="112" cy="144" r="2.5" fill="currentColor" stroke="none"/>
+      <circle cx="128" cy="144" r="2.5" fill="currentColor" stroke="none"/>
+      <circle cx="144" cy="144" r="2.5" fill="currentColor" stroke="none"/>
+      <circle cx="80" cy="158" r="2.5" fill="currentColor" stroke="none"/>
+      <circle cx="96" cy="158" r="2.5" fill="currentColor" stroke="none"/>
+      <circle cx="112" cy="158" r="2.5" fill="currentColor" stroke="none"/>
+      <circle cx="128" cy="158" r="2.5" fill="currentColor" stroke="none"/>
+      <circle cx="144" cy="158" r="2.5" fill="currentColor" stroke="none"/>
+      <circle cx="80" cy="172" r="2.5" fill="currentColor" stroke="none"/>
+      <circle cx="96" cy="172" r="2.5" fill="currentColor" stroke="none"/>
+      <circle cx="112" cy="172" r="2.5" fill="currentColor" stroke="none"/>
+      <circle cx="128" cy="172" r="2.5" fill="currentColor" stroke="none"/>
+      <circle cx="144" cy="172" r="2.5" fill="currentColor" stroke="none"/>
+      <!-- arms -->
+      <path d="M62 140 q-22 4 -24 26"/>
+      <path d="M158 140 q22 4 24 26"/>
+      <circle cx="37" cy="172" r="6"/>
+      <circle cx="184" cy="172" r="6"/>
+      <!-- legs / breadboard base -->
+      <line x1="88" y1="188" x2="88" y2="204"/>
+      <line x1="132" y1="188" x2="132" y2="204"/>
+      <rect x="52" y="204" width="116" height="20" rx="6"/>
+      <!-- spark -->
+      <path d="M196 84 l-10 16 h10 l-10 16" class="accent" stroke="currentColor"/>
+      <!-- gear -->
+      <circle cx="28" cy="92" r="13"/>
+      <circle cx="28" cy="92" r="4.5"/>
+      <line x1="28" y1="73" x2="28" y2="79"/>
+      <line x1="28" y1="105" x2="28" y2="111"/>
+      <line x1="9" y1="92" x2="15" y2="92"/>
+      <line x1="41" y1="92" x2="47" y2="92"/>
+      <line x1="15" y1="79" x2="19" y2="83"/>
+      <line x1="37" y1="101" x2="41" y2="105"/>
+      <line x1="41" y1="79" x2="37" y2="83"/>
+      <line x1="19" y1="101" x2="15" y2="105"/>
+    </svg>
+  </div>
+</header>
+
+<section id="idea">
+  <div class="wrap">
+    <p class="kicker">01 · The Idea</p>
+    <h2>One paragraph</h2>
+    <p>Learn.io is a learning platform where people master science and engineering by <em>doing</em> — solving interactive challenges on screen the way Brilliant.org does, then building real physical projects with their hands the way CrunchLabs does. It merges both worlds into one guided journey, designed on top of cognitive science (how humans actually learn and retain) and serious UI/UX craft (how to make hard things feel engaging, not gamified fluff).</p>
+    <p>The first track: <strong>robotics and electronics</strong>, delivered through shipped project kits paired with the digital platform. Starting market: <strong>MENA, Arabic-first</strong>.</p>
+  </div>
+</section>
+
+<section id="problem">
+  <div class="wrap">
+    <p class="kicker">02 · The Problem</p>
+    <h2>Where science education fails</h2>
+    <ul class="flat">
+      <li><strong>Passive learning dominates.</strong> Video courses and lectures create the illusion of understanding. Learners watch, nod, and forget — retention from passive consumption is a fraction of what active practice produces.</li>
+      <li><strong>Theory is divorced from the physical world.</strong> Even the best interactive platforms stop at the screen. A learner can solve circuit puzzles for months and still freeze the first time they hold a real breadboard.</li>
+      <li><strong>Hands-on products skip the science.</strong> Many subscription kits teach "follow the steps" assembly rather than the underlying principles. The learner builds the thing but couldn't design the next one.</li>
+      <li><strong>Trend-chasing replaces fundamentals.</strong> "Learn AI in 30 days," "code without math" — the market rewards hype over depth, leaving shallow skills built on missing foundations.</li>
+      <li><strong>MENA is underserved.</strong> Quality interactive STEM content in Arabic is nearly nonexistent, and hands-on engineering kits with Arabic instruction and regional shipping are rarer still — while the region's young population and appetite for tech careers keep growing.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="solution">
+  <div class="wrap">
+    <p class="kicker">03 · The Solution</p>
+    <h2>One platform, two connected layers</h2>
+    <div class="layers">
+      <div class="layer">
+        <svg class="licon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><circle cx="8" cy="10" r="1.6"/><circle cx="16" cy="10" r="1.6"/><path d="M9.6 10h4.8"/><path d="M8 8.4V6.5M16 11.6v1.9"/></svg>
+        <span class="tag">DIGITAL · Brilliant-style</span>
+        <h3>Solve, don't watch</h3>
+        <p>Short, interactive lessons where the learner solves problems — not watches videos. Electronics and robotics taught through manipulation, prediction, and immediate feedback: simulate the circuit, predict the output, fix the bug, then see why.</p>
+      </div>
+      <div class="layer">
+        <svg class="licon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="1.5"/><rect x="10" y="10" width="4" height="4" rx="0.5"/><path d="M9.5 7V4.5M14.5 7V4.5M9.5 19.5V17M14.5 19.5V17M7 9.5H4.5M7 14.5H4.5M19.5 9.5H17M19.5 14.5H17"/></svg>
+        <span class="tag">PHYSICAL · CrunchLabs-style</span>
+        <h3>Build, don't assemble</h3>
+        <p>Project kits shipped to the learner, synchronized with the digital track. Every kit builds on the concepts just mastered on screen. Finish the digital module on motor drivers, then wire and program a real one.</p>
+      </div>
+    </div>
+    <svg class="loop-diagram" viewBox="0 0 620 190" role="img" aria-label="Diagram of the learning loop: concepts flow from the digital screen to the physical kit, and mastery flows back from the kit to the screen">
+      <rect class="box" x="14" y="46" width="240" height="98" rx="16" stroke-width="1.5"/>
+      <text class="kick" x="134" y="80" text-anchor="middle">DIGITAL</text>
+      <text class="lbl" x="134" y="105" text-anchor="middle">Learn why</text>
+      <text class="sub" x="134" y="126" text-anchor="middle">interactive problems on screen</text>
+      <rect class="box" x="366" y="46" width="240" height="98" rx="16" stroke-width="1.5"/>
+      <text class="kick" x="486" y="80" text-anchor="middle">PHYSICAL</text>
+      <text class="lbl" x="486" y="105" text-anchor="middle">Prove it</text>
+      <text class="sub" x="486" y="126" text-anchor="middle">real builds in real hands</text>
+      <path class="arrow" d="M262 72 Q310 42 358 72" stroke-width="2.5"/>
+      <path class="head" d="M358 72 l-11 -3 4 10 z"/>
+      <text class="flow" x="310" y="38" text-anchor="middle">concepts</text>
+      <path class="arrow" d="M358 120 Q310 150 262 120" stroke-width="2.5"/>
+      <path class="head" d="M262 120 l11 3 -4 -10 z"/>
+      <text class="flow" x="310" y="166" text-anchor="middle">mastery</text>
+    </svg>
+    <p class="loop-note">The screen teaches <em>why</em>; the kit proves it in the learner's hands. Neither layer alone is new — the tight loop between them is the product.</p>
+
+    <h3>What makes it different</h3>
+    <ol class="nums">
+      <li><strong>Cognitive science as an engineering discipline, not a slogan.</strong> The curriculum is built on established learning research: active recall, spaced repetition, desirable difficulty, immediate feedback, and interleaving. Lesson design decisions trace back to evidence, not intuition.</li>
+      <li><strong>UI/UX as a teaching instrument.</strong> Interface design lowers cognitive load where the learner shouldn't struggle, and raises productive struggle where they should. Closer to a well-crafted game than a textbook — without cheapening the content.</li>
+      <li><strong>Real science, no trend-surfing.</strong> Fundamentals first. A learner who finishes the robotics track can design circuits and systems, not just replicate tutorials.</li>
+      <li><strong>Arabic-first for a region that's been an afterthought.</strong> Native Arabic content designed from scratch — not translated — with the option to expand bilingually.</li>
+    </ol>
+  </div>
+</section>
+
+<section id="audience">
+  <div class="wrap">
+    <p class="kicker">04 · Who It's For</p>
+    <h2>The learners</h2>
+    <div class="cards">
+      <div class="card">
+        <svg class="cicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5 12 5l10 4.5L12 14 2 9.5z"/><path d="M6.5 11.5V16c0 1.2 2.5 2.7 5.5 2.7s5.5-1.5 5.5-2.7v-4.5"/><line x1="22" y1="9.5" x2="22" y2="15"/></svg>
+        <h3>Teens (15–18) · primary</h3>
+        <p>High-school students who want real engineering skills beyond a curriculum that rarely offers hands-on work. Motivated by university preparation, competitions, and genuine curiosity. Purchase decision often involves parents.</p>
+      </div>
+      <div class="card">
+        <svg class="cicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4.5 4.5 0 0 0-6 5.6L3 17.6V21h3.4l5.7-5.7a4.5 4.5 0 0 0 5.6-6l-3.2 3.2-2.8-2.8 3-3z"/></svg>
+        <h3>University students &amp; adults · primary</h3>
+        <p>Engineering students whose degrees are theory-heavy; self-learners and career-switchers moving toward embedded systems, robotics, and hardware; hobbyists who want structure instead of scattered YouTube tutorials.</p>
+      </div>
+      <div class="card span">
+        <svg class="cicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V8l6-4.5L15 8v13"/><path d="M15 21V11h6v10"/><line x1="1.5" y1="21" x2="22.5" y2="21"/><rect x="7" y="10" width="4" height="3.5" rx="0.5"/><path d="M18 14h.01M18 17h.01"/></svg>
+        <h3>Later</h3>
+        <p>Younger learners (with adapted tracks), schools and STEM clubs (institutional licensing), and makerspaces.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="track">
+  <div class="wrap">
+    <p class="kicker">05 · First Track</p>
+    <h2>Robotics &amp; Electronics</h2>
+    <p>Robotics is the ideal starting point because it is inherently physical, visibly rewarding, and layered — it naturally teaches electronics, programming, mechanics, and systems thinking in one arc.</p>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Stage</th><th>Digital layer</th><th>Physical kit</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="stage">Foundations</td><td>Electricity, circuits, components — interactive simulations</td><td>First circuits kit: breadboard, sensors, real measurements</td></tr>
+          <tr><td class="stage">Control</td><td>Microcontrollers, logic, programming fundamentals</td><td>MCU kit: inputs, outputs, first programs on real hardware</td></tr>
+          <tr><td class="stage">Systems</td><td>Motors, drivers, power, signal</td><td>Actuator kit: motion, control loops</td></tr>
+          <tr><td class="stage">Integration</td><td>Robot architecture, debugging, design thinking</td><td>Capstone robot: designed and built, not just assembled</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Each digital module ends with a mastery check; each kit ends with an open-ended challenge that requires understanding, not instruction-following. <em>(Illustrative arc — to be developed with curriculum design.)</em></p>
+  </div>
+</section>
+
+<section id="market">
+  <div class="wrap">
+    <p class="kicker">06 · Market Snapshot</p>
+    <h2>Demand on both sides, no one combining them</h2>
+    <ul class="flat">
+      <li>Global EdTech is a multi-hundred-billion-dollar market; STEM kits and hands-on learning are among its fastest-growing segments.</li>
+      <li>Brilliant.org and CrunchLabs each prove one half of the model at scale — evidence of demand on both sides, with no dominant player combining them.</li>
+      <li>MENA: 400M+ people, a majority under 30, national strategies (Saudi Vision 2030, UAE, Egypt ICT strategy) pouring investment into STEM education and local tech talent — with a severe shortage of quality Arabic technical content.</li>
+    </ul>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th></th><th>Interactive digital</th><th>Physical kits</th><th>Real fundamentals</th><th>Arabic-first</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="who">Brilliant.org</td><td class="yes">✔</td><td class="no">✘</td><td class="yes">✔</td><td class="no">✘</td></tr>
+          <tr><td class="who">CrunchLabs</td><td class="no">✘</td><td class="yes">✔</td><td class="partial">partial</td><td class="no">✘</td></tr>
+          <tr><td class="who">Generic STEM kits</td><td class="no">✘</td><td class="yes">✔</td><td class="no">✘</td><td class="partial">rare</td></tr>
+          <tr><td class="who">YouTube / MOOCs</td><td class="no">✘</td><td class="no">✘</td><td class="partial">varies</td><td class="partial">limited</td></tr>
+          <tr class="hero-row"><td class="who">Learn.io</td><td class="yes">✔</td><td class="yes">✔</td><td class="yes">✔</td><td class="yes">✔</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><em>Figures to be validated with dedicated research — directional only.</em></p>
+  </div>
+</section>
+
+<section id="business">
+  <div class="wrap">
+    <p class="kicker">07 · Business Model</p>
+    <h2>Open — options under evaluation</h2>
+    <ol class="nums">
+      <li><strong>Subscription + kits (hybrid).</strong> Monthly/annual platform subscription; kits sold per track or bundled into higher tiers. Recurring revenue plus hardware margin. Closest to the CrunchLabs + Brilliant hybrid nature of the product.</li>
+      <li><strong>Track-based pricing.</strong> One price per complete track (digital + kits included). Simple to communicate, easier for MENA buyers wary of subscriptions.</li>
+      <li><strong>Freemium funnel.</strong> Free digital foundations; paid kits and advanced tracks. Lowers the entry barrier in a price-sensitive market.</li>
+    </ol>
+    <p>Key questions to resolve: kit logistics and shipping costs across MENA, local payment preferences (subscription resistance, cash-on-delivery culture), and unit economics of hardware at low initial volume.</p>
+  </div>
+</section>
+
+<section id="principles">
+  <div class="wrap">
+    <p class="kicker">08 · Design &amp; Learning Principles</p>
+    <h2>Commitments, not features</h2>
+    <ul class="flat">
+      <li><strong>Nothing is learned passively.</strong> Every concept is introduced through a problem the learner acts on.</li>
+      <li><strong>The interface serves cognition.</strong> Every screen is designed around what the learner's working memory can hold at that moment.</li>
+      <li><strong>Struggle is placed deliberately.</strong> Easy where confusion adds nothing; hard where the struggle <em>is</em> the learning.</li>
+      <li><strong>The physical build is the exam.</strong> True mastery is demonstrated in the real world, not in a quiz.</li>
+      <li><strong>Depth over trend.</strong> Content earns its place by building lasting capability.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="roadmap">
+  <div class="wrap">
+    <p class="kicker">09 · Roadmap</p>
+    <h2>Draft phases</h2>
+    <div class="phase">
+      <span class="ph">P0</span>
+      <div>
+        <h3>Foundation (now)</h3>
+        <p>Define curriculum architecture for the robotics track. Validate demand (landing page, community, interviews with target learners in MENA). Resolve business model and kit logistics questions.</p>
+      </div>
+    </div>
+    <div class="phase">
+      <span class="ph">P1</span>
+      <div>
+        <h3>Digital MVP</h3>
+        <p>Build the first interactive digital modules (electronics foundations). Test with a pilot cohort; measure completion and retention against cognitive-science benchmarks.</p>
+      </div>
+    </div>
+    <div class="phase">
+      <span class="ph">P2</span>
+      <div>
+        <h3>First kit</h3>
+        <p>Design and produce the foundations kit. Run the full digital + physical loop with pilot users. Iterate.</p>
+      </div>
+    </div>
+    <div class="phase">
+      <span class="ph">P3</span>
+      <div>
+        <h3>Launch</h3>
+        <p>Full first track live in Arabic. Paid launch in initial market(s). Begin second track planning.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="risks">
+  <div class="wrap">
+    <p class="kicker">10 · Risks &amp; Open Questions</p>
+    <h2>Known unknowns</h2>
+    <ul class="flat">
+      <li><strong>Hardware logistics in MENA</strong> — shipping, customs, and cost across fragmented markets. Possible mitigations: country-by-country launch, local fulfillment partners, BYO-components fallback path.</li>
+      <li><strong>Capital intensity of kits</strong> — hardware requires upfront cash. Digital-first launch de-risks this.</li>
+      <li><strong>Name and domain</strong> — "Learn.io" availability and trademark need verification; naming may need revisiting.</li>
+      <li><strong>Curriculum expertise</strong> — the cognitive-science claim must be backed by rigorous instructional design, potentially with an advisor.</li>
+      <li><strong>Pricing sensitivity</strong> — MENA purchasing power varies widely; regional pricing likely required.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="example">
+  <div class="wrap">
+    <p class="kicker">11 · Example in Action</p>
+    <h2>A lesson prototype, Arabic-first</h2>
+    <p>An early prototype of the digital layer: an interactive Arabic lesson on the water cycle for upper-primary learners. It opens by activating prior knowledge with a prediction question — no video, no lecture — exactly the active-learning loop the platform is built on.</p>
+    <div class="shot">
+      <img src="assets/example-lesson.png" alt="Screenshot of an interactive Arabic lesson prototype: a self-check question about condensation on a cold glass, with two answer choices, a progress bar, and an illustration of a glass of iced water" loading="lazy">
+    </div>
+    <p class="shot-caption">Lesson B — "The cycle never stops" (دورة الماء): warm-up self-check with immediate feedback, progress tracking, and deliberate, working-memory-friendly pacing.</p>
+    <a class="try-btn" href="example/">Try the interactive lesson — جرّب الدرس التفاعلي ←</a>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <p class="kicker">12 · Contact</p>
+    <h2>Get in touch</h2>
+    <div class="contact-row">
+      <a class="contact-btn" href="https://wa.me/966536267552">
+        <svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m0 1.67c2.2 0 4.27.86 5.83 2.42a8.2 8.2 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m-3.4 4.43c-.16 0-.43.06-.66.31-.22.25-.87.85-.87 2.07 0 1.22.89 2.4 1 2.56.13.17 1.76 2.67 4.25 3.73.59.27 1.05.42 1.41.53.59.19 1.13.16 1.56.1.48-.07 1.46-.6 1.67-1.18.2-.58.2-1.07.14-1.18-.06-.11-.22-.16-.47-.28-.25-.13-1.47-.74-1.69-.82-.23-.08-.39-.12-.56.12-.16.25-.64.81-.78.97-.15.17-.29.19-.53.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.42-.14-.01-.31-.01-.49-.01"/></svg>
+        WhatsApp <span class="val">+966 53 626 7552</span>
+      </a>
+      <a class="contact-btn" href="tel:+966536267552">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Call <span class="val">+966 53 626 7552</span>
+      </a>
+      <a class="contact-btn" href="mailto:emad.cydia@gmail.com">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        Email <span class="val">emad.cydia@gmail.com</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="qr-title">Scan to share this portfolio</p>
+    <div class="qr-box" aria-label="QR code linking to this page">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 33" role="img" aria-hidden="false" aria-label="QR code for https://omd0.github.io/Share-Area/"><path stroke="currentColor" d="M2 2.5h7m3 0h2m2 0h1m2 0h4m1 0h7m-29 1h1m5 0h1m1 0h2m1 0h3m4 0h3m1 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m3 0h2m3 0h1m3 0h1m2 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m2 0h2m2 0h1m3 0h2m3 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h4m1 0h1m2 0h1m2 0h1m2 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m3 0h2m2 0h2m3 0h2m1 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-18 1h1m3 0h1m1 0h3m-20 1h1m1 0h1m1 0h1m1 0h1m2 0h1m1 0h2m3 0h2m1 0h2m3 0h1m2 0h1m-28 1h2m1 0h1m1 0h1m2 0h1m1 0h1m1 0h2m1 0h1m4 0h4m1 0h1m2 0h1m-29 1h1m1 0h2m1 0h3m2 0h3m1 0h1m3 0h1m1 0h2m2 0h1m1 0h3m-26 1h1m4 0h1m1 0h1m2 0h2m1 0h2m2 0h4m3 0h1m-24 1h1m1 0h3m2 0h1m2 0h4m1 0h5m1 0h1m1 0h2m-29 1h1m1 0h1m4 0h3m4 0h1m2 0h1m3 0h3m1 0h1m2 0h1m-29 1h2m1 0h1m1 0h2m4 0h1m1 0h1m4 0h1m1 0h3m1 0h2m1 0h2m-28 1h1m3 0h1m1 0h3m2 0h1m2 0h1m1 0h2m3 0h1m2 0h1m1 0h1m-25 1h1m2 0h1m1 0h2m1 0h2m3 0h2m2 0h3m2 0h1m1 0h2m-27 1h2m3 0h1m5 0h1m2 0h3m1 0h3m2 0h2m1 0h1m-29 1h1m4 0h5m1 0h2m1 0h1m2 0h2m4 0h2m2 0h2m-28 1h2m2 0h1m1 0h1m3 0h1m1 0h5m1 0h2m3 0h2m1 0h1m-28 1h1m2 0h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h2m2 0h5m-17 1h5m1 0h1m1 0h2m2 0h1m3 0h1m1 0h3m-29 1h7m2 0h1m2 0h2m2 0h1m2 0h2m1 0h1m1 0h2m1 0h2m-29 1h1m5 0h1m3 0h1m1 0h1m4 0h2m1 0h1m3 0h2m1 0h2m-29 1h1m1 0h3m1 0h1m1 0h1m1 0h1m6 0h2m1 0h5m3 0h1m-29 1h1m1 0h3m1 0h1m2 0h1m1 0h2m3 0h1m2 0h1m3 0h2m1 0h3m-29 1h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h2m6 0h1m1 0h3m2 0h1m-29 1h1m5 0h1m2 0h1m2 0h4m1 0h4m3 0h1m2 0h1m-28 1h7m1 0h1m3 0h1m1 0h1m1 0h1m2 0h2m1 0h2m3 0h2"/></svg>
+    </div>
+    <a class="qr-link" href="https://omd0.github.io/Share-Area/">omd0.github.io/Share-Area</a>
+    <p class="fineprint">Learn.io — Project Portfolio · Concept stage, v0.1 draft · This is a living document; open sections (business model, market figures, roadmap dates) will be updated as decisions are made.</p>
+  </div>
+</footer>
+
+</body>
+</html>
