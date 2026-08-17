@@ -210,6 +210,27 @@
   .phase div p { margin: 0; font-size: 15.5px; }
   .phase div h3 { margin: 0 0 6px; font-size: 17px; }
 
+  /* Example screenshot */
+  .shot {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 10px;
+    margin: 26px 0 14px;
+  }
+  .shot img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  .shot-caption {
+    font-size: 14px;
+    color: var(--ink-faint);
+    margin: 0;
+    max-width: none;
+  }
+
   /* Contact */
   .contact-row {
     display: flex;
@@ -488,9 +509,21 @@
   </div>
 </section>
 
+<section id="example">
+  <div class="wrap">
+    <p class="kicker">11 · Example in Action</p>
+    <h2>A lesson prototype, Arabic-first</h2>
+    <p>An early prototype of the digital layer: an interactive Arabic lesson on the water cycle for upper-primary learners. It opens by activating prior knowledge with a prediction question — no video, no lecture — exactly the active-learning loop the platform is built on.</p>
+    <div class="shot">
+      <img src="assets/example-lesson.png" alt="Screenshot of an interactive Arabic lesson prototype: a self-check question about condensation on a cold glass, with two answer choices, a progress bar, and an illustration of a glass of iced water" loading="lazy">
+    </div>
+    <p class="shot-caption">Lesson B — "The cycle never stops" (دورة الماء): warm-up self-check with immediate feedback, progress tracking, and deliberate, working-memory-friendly pacing.</p>
+  </div>
+</section>
+
 <section id="contact">
   <div class="wrap">
-    <p class="kicker">11 · Contact</p>
+    <p class="kicker">12 · Contact</p>
     <h2>Get in touch</h2>
     <div class="contact-row">
       <a class="contact-btn" href="https://wa.me/966536267552">
